@@ -360,7 +360,7 @@ inline std::string Repeat(const std::string & str, size_t n)
     if (n == 1) { return str; }
     const auto str_size = str.size();
 
-    // Check for overflow if n is greater than maximum repeatable amount via string max_size.
+    // Check for overflow if n is greater than maximum allowable repeat with string max_size.
     // New behaviour compared to pystring::mul and StringUtil::Multiply.
     // limits.h says size_t max size is 18446744073709551615.
     if (n > str.max_size() / str_size) { return {}; }

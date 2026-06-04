@@ -477,7 +477,7 @@ std::string SerializeOpVec(const OpRcPtrVec & ops, int indent)
     {
         const OpRcPtr & op = ops[idx];
 
-        oss << StringUtils::Multiply(" ", indent);
+        oss << StringUtils::Repeat(" ", indent);
         oss << "Op " << idx << ": " << *op << " ";
         oss << op->getCacheID();
 
