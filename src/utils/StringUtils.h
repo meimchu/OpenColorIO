@@ -271,17 +271,17 @@ inline std::string::size_type ReverseFind(const std::string & subject, const std
 }
 
 // In place replace the 'search' substring by the 'replace' string in 'subject'. Limited by 'count'.
-inline bool ReplaceInPlace(std::string & subject, const std::string & search, const std::string & replace, int count)
+inline bool ReplaceInPlace(std::string & subject, const std::string & search, const std::string & replace, size_t count)
 {
-    if (search.empty()) return false;
+    if (search.empty() || count == 0) { return false; }
 
     bool changed = false;
 
     size_t pos = 0;
-    int iter = 0;
+    size_t iter = 0;
     while ((pos = subject.find(search, pos)) != std::string::npos)
     {
-        if ( count > -1 && iter >= count ) { break; }
+        if (iter >= count) { break; }
         subject.replace(pos, search.length(), replace);
         pos += replace.length();
         changed = true;
@@ -294,11 +294,11 @@ inline bool ReplaceInPlace(std::string & subject, const std::string & search, co
 // In place replace the 'search' substring by the 'replace' string in 'subject'.
 inline bool ReplaceInPlace(std::string & subject, const std::string & search, const std::string & replace)
 {
-    return ReplaceInPlace(subject, search, replace, -1);
+    return ReplaceInPlace(subject, search, replace, std::string::npos);
 }
 
 // Replace the 'search' substring by the 'replace' string in 'subject'. Limited by 'count'.
-inline std::string Replace(const std::string & subject, const std::string & search, const std::string & replace, int count)
+inline std::string Replace(const std::string & subject, const std::string & search, const std::string & replace, size_t count)
 {
     std::string str{subject};
     ReplaceInPlace(str, search, replace, count);
@@ -308,7 +308,7 @@ inline std::string Replace(const std::string & subject, const std::string & sear
 // Replace the 'search' substring by the 'replace' string in 'subject'.
 inline std::string Replace(const std::string & subject, const std::string & search, const std::string & replace)
 {
-    return Replace(subject, search, replace, -1);
+    return Replace(subject, search, replace, std::string::npos);
 }
 
 // Check if the 'entry' is in the 'list' using a case insensitive comparison.
@@ -341,14 +341,14 @@ inline bool Remove(StringVec & list, const std::string & entry)
 }
 
 // Repeat the 'str' by the 'n' value.
-inline std::string Multiply(const std::string & str, int n)
+inline std::string Multiply(const std::string & str, size_t n)
 {
     // Early exits
     if (n <= 0) return "";
     if (n == 1) return str;
 
     std::ostringstream os;
-    for(int i = 0; i < n; ++i) { os << str; }
+    for(size_t i = 0; i < n; ++i) { os << str; }
     return os.str();
 }
 
