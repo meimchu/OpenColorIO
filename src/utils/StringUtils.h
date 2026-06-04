@@ -340,16 +340,44 @@ inline bool Remove(StringVec & list, const std::string & entry)
     return false;
 }
 
-// Repeat the 'str' by the 'n' value.
+// Multiply the 'str' by the 'n' value.
 inline std::string Multiply(const std::string & str, size_t n)
 {
-    // Early exits
-    if (n <= 0) return "";
-    if (n == 1) return str;
+    // Early exit and match pystring::mul behaviour.
+    if (n == 0) { return ""; }
+    if (n == 1) { return str; }
 
     std::ostringstream os;
     for(size_t i = 0; i < n; ++i) { os << str; }
     return os.str();
+}
+
+// Repeat the 'str' by the 'n' value.
+inline std::string Repeat(const std::string & str, size_t n)
+{
+    // Early exit and match pystring::mul behaviour.
+    if (n == 0) { return {}; }
+    if (n == 1) { return str; }
+    const auto str_size = str.size();
+
+    // Check for overflow if n is greater than maximum repeatable amount via string max_size.
+    // New behaviour compared to pystring::mul and StringUtil::Multiply.
+    // limits.h says size_t max size is 18446744073709551615.
+    if (n > str.max_size() / str_size) { return {}; }
+
+    std::string result;
+    result.reserve(str_size * n);
+    result = str;
+    size_t current = 1;
+    while (current * 2 <= n) {
+        result += result;
+        current *= 2;
+    }
+    const auto remaining = n - current;
+    if (remaining > 0) {
+        result += std::string_view(result.data(), str_size * remaining);
+    }
+    return result;
 }
 
 } // namespace StringUtils
