@@ -469,7 +469,7 @@ std::ostream& operator<< (std::ostream & os, const Op & op)
     return os;
 }
 
-std::string SerializeOpVec(const OpRcPtrVec & ops, int indent)
+std::string SerializeOpVec(const OpRcPtrVec & ops, size_t indent)
 {
     std::ostringstream oss;
 

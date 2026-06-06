@@ -347,7 +347,7 @@ inline std::string Multiply(const std::string & str, size_t n)
     if (n == 0) { return ""; }
     if (n == 1) { return str; }
 
-    if (str.empty()) { return ""; }
+    if (str.empty()) { return str; }
 
     std::ostringstream os;
     for(size_t i = 0; i < n; ++i) { os << str; }
@@ -361,7 +361,7 @@ inline std::string Repeat(const std::string & str, size_t n)
     if (n == 0) { return {}; }
     if (n == 1) { return str; }
 
-    if (str.empty()) { return {}; }
+    if (str.empty()) { return str; }
     const auto str_size = str.size();
 
     std::string result;
