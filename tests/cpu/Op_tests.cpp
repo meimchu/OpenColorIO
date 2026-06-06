@@ -514,4 +514,7 @@ OCIO_ADD_TEST(OpRcPtrVec, serialize)
 
     // Serialize not optimized OpVec i.e. contains some NoOps.
     OCIO_CHECK_NO_THROW(OCIO::SerializeOpVec(ops));
+
+    // Check Serialize output's prefix for indentation.
+    OCIO_CHECK_EQUAL(std::string_view(SerializeOpVec(ops, 4), 7), "    Op ");
 }
