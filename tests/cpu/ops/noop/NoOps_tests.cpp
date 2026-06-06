@@ -242,6 +242,8 @@ OCIO_ADD_TEST(NoOps, partition_gpu_ops)
     OCIO_CHECK_NO_THROW( AssertPartitionIntegrity(gpuPreOps,
                                                   gpuLatticeOps,
                                                   gpuPostOps) );
+    std::cerr << "gpuPreOps" << std::endl;
+    std::cerr << SerializeOpVec(gpuPreOps, 4) << std::endl;
     /*
     std::cerr << "gpuPreOps" << std::endl;
     std::cerr << SerializeOpVec(gpuPreOps, 4) << std::endl;

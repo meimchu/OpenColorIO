@@ -131,7 +131,7 @@ OCIO_ADD_TEST(StringUtils, split)
 
     // Something important to notice and preserve.
     {
-        // Note: StringUtils::Split() is mainly used to parse some string content enumerating 
+        // Note: StringUtils::Split() is mainly used to parse some string content enumerating
         // a list of substrings (i.e. separator could be a space, comma, etc). In that use case,
         // a string like ",," must return three entries. Refer to 'looks' parsing for example.
         // However, StringUtils::SplitByLines() is mainly used to read some file content where
@@ -287,6 +287,10 @@ OCIO_ADD_TEST(StringUtils, multiply)
     OCIO_CHECK_EQUAL(StringUtils::Multiply(" ", 0), "");
     OCIO_CHECK_EQUAL(StringUtils::Multiply(" ", 1), " ");
     OCIO_CHECK_EQUAL(StringUtils::Multiply(" ", 2), "  ");
+
+    OCIO_CHECK_EQUAL(StringUtils::Multiply("", 0), "");
+    OCIO_CHECK_EQUAL(StringUtils::Multiply("", 1), "");
+    OCIO_CHECK_EQUAL(StringUtils::Multiply("", 2), "");
 }
 
 OCIO_ADD_TEST(StringUtils, repeat)
@@ -300,4 +304,8 @@ OCIO_ADD_TEST(StringUtils, repeat)
     OCIO_CHECK_EQUAL(StringUtils::Repeat(" ", 0), "");
     OCIO_CHECK_EQUAL(StringUtils::Repeat(" ", 1), " ");
     OCIO_CHECK_EQUAL(StringUtils::Repeat(" ", 2), "  ");
+
+    OCIO_CHECK_EQUAL(StringUtils::Repeat("", 0), "");
+    OCIO_CHECK_EQUAL(StringUtils::Repeat("", 1), "");
+    OCIO_CHECK_EQUAL(StringUtils::Repeat("", 2), "");
 }

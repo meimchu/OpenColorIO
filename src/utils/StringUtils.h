@@ -347,6 +347,8 @@ inline std::string Multiply(const std::string & str, size_t n)
     if (n == 0) { return ""; }
     if (n == 1) { return str; }
 
+    if (str.empty()) { return ""; }
+
     std::ostringstream os;
     for(size_t i = 0; i < n; ++i) { os << str; }
     return os.str();
@@ -358,12 +360,9 @@ inline std::string Repeat(const std::string & str, size_t n)
     // Early exit and match pystring::mul behaviour.
     if (n == 0) { return {}; }
     if (n == 1) { return str; }
-    const auto str_size = str.size();
 
-    // Check for overflow if n is greater than maximum allowable repeat with string max_size.
-    // New behaviour compared to pystring::mul and StringUtil::Multiply.
-    // limits.h says size_t max size is 18446744073709551615.
-    if (n > str.max_size() / str_size) { return {}; }
+    if (str.empty()) { return {}; }
+    const auto str_size = str.size();
 
     std::string result;
     result.reserve(str_size * n);
