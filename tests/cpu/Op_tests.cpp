@@ -517,5 +517,5 @@ OCIO_ADD_TEST(OpRcPtrVec, serialize)
 
     // Check Serialize output's prefix for indentation.
     std::string ops_serialized = OCIO::SerializeOpVec(ops, 4);
-    OCIO_CHECK_EQUAL(std::string_view(ops_serialized, 7), "    Op ");
+    OCIO_CHECK_EQUAL(std::string_view(ops_serialized.data(), 7), "    Op ");
 }
