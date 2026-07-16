@@ -116,6 +116,7 @@ jobs:
             build-openfx: 'ON'
             use-simd: 'ON'
             use-oiio: 'ON'
+            aswf-ocio-version: 2.4.2
             cxx-standard: 20
             cxx-compiler: clang++
             cc-compiler: clang
@@ -158,6 +159,7 @@ jobs:
             build-openfx: 'ON'
             use-simd: 'ON'
             use-oiio: 'ON'
+            aswf-ocio-version: 2.3.2
             cxx-standard: 20
             cxx-compiler: clang++
             cc-compiler: clang
